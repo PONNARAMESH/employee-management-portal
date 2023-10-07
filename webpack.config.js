@@ -28,6 +28,9 @@ module.exports = {
       template: path.join(__dirname, "src", "index.html"),
     }),
   ],
+  devServer: {
+    historyApiFallback: true, // It prevents the reload issue and direct searching by paths.
+  },
   module: {
     rules: [
       {
