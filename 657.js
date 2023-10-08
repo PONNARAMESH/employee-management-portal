@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkemployee_portal=self.webpackChunkemployee_portal||[]).push([[657],{657:function(e,r,l){l.r(r);var s=l(893);r.default=UserProfile=function(e){return(0,s.jsx)("div",{className:"userProfile",children:(0,s.jsx)("h1",{children:"User Profile"})})}}}]);
