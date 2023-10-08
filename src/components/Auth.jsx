@@ -5,7 +5,11 @@ import { useContext } from "react";
 import React from "react";
 
 const Auth = ({ allowedRoles }) => {
-//   const { auth } = useContext(AuthContext);
+  //   const { auth } = useContext(AuthContext);
+  const auth = {
+    name: "ramesh",
+    role: ["EMPLOYEE", "PROJECT_MANAGER", "ADMIN"],
+  }; // TODO: Later it has to fetch dynamically based on user login
   const location = useLocation();
 
   return allowedRoles.find((role) => auth.role.includes(role)) ? (

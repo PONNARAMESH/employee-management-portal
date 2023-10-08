@@ -1,5 +1,5 @@
 import React, { useState, useRef, Suspense } from "react";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import "./App.css";
 // import PublicRoute from "./components/PublicRoute";
@@ -19,22 +19,37 @@ const isAuthenticated = true; // TODO: later it have to pick dynamically
 // console.log("##env-file-data ", process.env);
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to='/login' />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/dashboard" element={<EmployeeDashboard />} />
-      <Route
-        element={
-          <Auth allowedRoles={["employee"]} isAuthenticated={isAuthenticated} />
-        }
-      >
+    <div div="app">
+      <ul className="App-header1">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to={routePaths?.LOGIN_PAGE}>login</Link>
+        </li>
+        <li>
+          <Link to={routePaths?.EMPLOYEE_DASHBOARD}>Dashboard</Link>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<EmployeeDashboard />} />
         <Route
-          path={routePaths?.EMPLOYEE_DASHBOARD}
-          element={<EmployeeDashboard />}
-        />
-      </Route>
-      <Route path="*" element={<PageNotFoundPage />} />
-      {/* <PublicRoute
+          element={
+            <Auth
+              allowedRoles={["EMPLOYEE"]}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        >
+          <Route
+            path={routePaths?.EMPLOYEE_DASHBOARD}
+            element={<EmployeeDashboard />}
+          />
+        </Route>
+        <Route path="*" element={<PageNotFoundPage />} />
+        {/* <PublicRoute
         path={routePaths.FORGOT_PASSWORD_PAGE}
         isAuthenticated={isAuthenticated}
       >
@@ -43,7 +58,8 @@ function App() {
       <PrivateRoute path="/auth" isAuthenticated={isAuthenticated}>
         <ProtectedRoutes routes={routes | []} />
       </PrivateRoute> */}
-    </Routes>
+      </Routes>
+    </div>
   );
 }
 
