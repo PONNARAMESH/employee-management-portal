@@ -24,6 +24,9 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed),
     }),
+    // new webpack.DefinePlugin({
+    //   BASENAME: JSON.stringify("/employee-portal"),
+    // }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
     }),

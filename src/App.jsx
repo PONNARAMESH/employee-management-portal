@@ -22,9 +22,6 @@ function App() {
     <div div="app">
       <ul className="App-header1">
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
           <Link to={routePaths?.LOGIN_PAGE}>login</Link>
         </li>
         <li>
