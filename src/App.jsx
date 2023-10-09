@@ -13,6 +13,7 @@ import PageNotFoundPage from "./containers/PageNotFoundPage";
 import { routePaths } from "./utils/routePaths";
 import routes from "./routesConfig";
 import EmployeeDashboard from "./containers/EmployeeDashboard";
+import UserProfile from "./containers/UserProfile";
 
 const isAuthenticated = true; // TODO: later it have to pick dynamically
 
@@ -20,18 +21,33 @@ const isAuthenticated = true; // TODO: later it have to pick dynamically
 function App() {
   return (
     <div div="app">
-      <ul className="App-header1">
-        <li>
-          <Link to={routePaths?.LOGIN_PAGE}>login</Link>
-        </li>
-        <li>
-          <Link to={routePaths?.EMPLOYEE_DASHBOARD}>Dashboard</Link>
-        </li>
-      </ul>
+      <nav>
+        <ul className="App-header1">
+          <li>
+            <Link to={routePaths?.LOGIN_PAGE}>login</Link>
+          </li>
+          <li>
+            <Link to={routePaths?.FORGOT_PASSWORD_PAGE}>Forgot Password</Link>
+          </li>
+          <li>
+            <Link to={routePaths?.EMPLOYEE_DASHBOARD}>Dashboard</Link>
+          </li>
+          <li>
+            <Link to={routePaths?.PROFILE_PAGE}>User Profile</Link>
+          </li>
+        </ul>
+      </nav>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<EmployeeDashboard />} />
+        <Route path={routePaths?.LOGIN_PAGE} element={<LoginPage />} />
+        <Route
+          path={routePaths?.FORGOT_PASSWORD_PAGE}
+          Component={ForgotPasswordPage}
+        />
+        <Route
+          path={routePaths?.EMPLOYEE_DASHBOARD}
+          element={<EmployeeDashboard />}
+        />
         <Route
           element={
             <Auth
@@ -45,16 +61,17 @@ function App() {
             element={<EmployeeDashboard />}
           />
         </Route>
+        <Route
+          element={
+            <Auth
+              allowedRoles={["EMPLOYEE", "PROJECT_MANAGER", "ADMIN"]}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        >
+          <Route path={routePaths?.PROFILE_PAGE} element={<UserProfile />} />
+        </Route>
         <Route path="*" element={<PageNotFoundPage />} />
-        {/* <PublicRoute
-        path={routePaths.FORGOT_PASSWORD_PAGE}
-        isAuthenticated={isAuthenticated}
-      >
-        <ForgotPasswordPage />
-      </PublicRoute>
-      <PrivateRoute path="/auth" isAuthenticated={isAuthenticated}>
-        <ProtectedRoutes routes={routes | []} />
-      </PrivateRoute> */}
       </Routes>
     </div>
   );

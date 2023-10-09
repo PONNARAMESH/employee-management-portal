@@ -1,7 +1,9 @@
-export default UserProfile = (props) => {
+function UserProfile(props) {
   return (
-    <div className="userProfile">
+    <div className='userProfile'>
       <h1>User Profile</h1>
     </div>
   );
-};
+}
+
+export default UserProfile;
